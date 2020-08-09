@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/et_login"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_hint"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/et_password"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/et_login"
+        app:layout_constraintBottom_toTopOf="@id/btn_enter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_enter"
+        style="@style/ButtonStyle"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_label"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:layout_constraintBottom_toTopOf="@id/tv_registation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_registation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_label"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/btn_enter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

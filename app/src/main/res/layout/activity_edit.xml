@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".EditActivity">
+
+    <EditText
+        android:id="@+id/et_firstName"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/first_name_hint"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/et_lastName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_lastName"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/last_name_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_firstName"
+        app:layout_constraintBottom_toTopOf="@id/et_position"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_position"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/position_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_lastName"
+        app:layout_constraintBottom_toTopOf="@id/et_age"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_age"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/age_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_position"
+        app:layout_constraintBottom_toTopOf="@id/et_gender"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_gender"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/gender_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_age"
+        app:layout_constraintBottom_toTopOf="@id/et_salary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_salary"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/salary_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_gender"
+        app:layout_constraintBottom_toTopOf="@id/et_data"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_data"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/data_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_salary"
+        app:layout_constraintBottom_toTopOf="@id/et_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_info"
+        style="@style/TextEditStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/info_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_label"
+        app:layout_constraintTop_toBottomOf="@id/et_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_cancel"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_label"
+        app:layout_constraintTop_toBottomOf="@id/et_info"
+        app:layout_constraintLeft_toRightOf="@id/btn_save"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

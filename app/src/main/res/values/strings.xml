@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">WorkersManager</string>
+    <string name="login_hint">Login</string>
+    <string name="password_hint">Password</string>
+    <string name="email_hint">Email</string>
+    <string name="first_name_hint">First name</string>
+    <string name="last_name_hint">Last name</string>
+    <string name="position_hint">Position</string>
+    <string name="age_hint">Age</string>
+    <string name="gender_hint">Gender</string>
+    <string name="salary_hint">Salary</string>
+    <string name="data_hint">Data</string>
+    <string name="info_hint">Info</string>
+    <string name="enter_label">Enter</string>
+    <string name="save_label">Save</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="registration_label"><u>Registration</u></string>
+</resources>
