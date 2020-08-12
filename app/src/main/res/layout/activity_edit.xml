@@ -98,9 +98,11 @@
 
     <Button
         android:id="@+id/btn_save"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save_label"
+        android:onClick="clickSave"
         app:layout_constraintTop_toBottomOf="@id/et_info"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn_cancel"
@@ -108,6 +110,7 @@
 
     <Button
         android:id="@+id/btn_cancel"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel_label"

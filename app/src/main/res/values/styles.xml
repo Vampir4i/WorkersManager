@@ -15,7 +15,6 @@
     </style>
 
     <style name="TextEditStyle">
-        <item name="android:background">@color/textField</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">30sp</item>
         <item name="android:padding">5dp</item>
