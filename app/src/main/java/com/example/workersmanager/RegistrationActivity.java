@@ -38,12 +38,18 @@ public class RegistrationActivity extends AppCompatActivity {
         App.getUserApi().registerUser(userModel).enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
+                if(response.isSuccessful()) {
+                    Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
+                    finish();
+                }
             }
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                setResult(RESULT_CANCELED);
+                finish();
             }
         });
     }
