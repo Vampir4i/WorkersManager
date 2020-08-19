@@ -43,60 +43,80 @@ public class EditActivity extends AppCompatActivity {
         etInfo = findViewById(R.id.et_info);
 
         if(status.equals(MainActivity.ACTIVITY_STATUS_UPDATE)) {
-            _id = intent.getStringExtra("_id");
-            etFirstName.setText(intent.getStringExtra("firstName"));
-            etLastName.setText(intent.getStringExtra("lastName"));
-            etPosition.setText(intent.getStringExtra("position"));
-            etAge.setText(intent.getIntExtra("age", 0));
-            etGender.setText(intent.getStringExtra("gender"));
-            etSalary.setText(intent.getIntExtra("salary", 0));
-            etData.setText(intent.getStringExtra("data"));
-            etInfo.setText(intent.getStringExtra("info"));
+            WorkerModel worker = (WorkerModel) intent.getSerializableExtra("worker");
+            _id = worker.get_id();
+            etFirstName.setText(worker.getFirstName());
+            etLastName.setText(worker.getLastName());
+            etPosition.setText(worker.getPosition());
+            etAge.setText("" + worker.getAge());
+            etGender.setText(worker.getGender());
+            etSalary.setText("" + worker.getSalary());
+            etData.setText(worker.getData());
+            etInfo.setText(worker.getInfo());
         }
     }
 
-    public void clickSave(View view) {
+    public void clickButtons(View view) {
+        if(view.getId() == R.id.btn_cancel) {
+            setResult(RESULT_CANCELED);
+            finish();
+            return;
+        }
         String firstName = etFirstName.getText().toString();
         String lastName = etLastName.getText().toString();
         String position = etPosition.getText().toString();
-        int age = Integer.valueOf(etAge.getText().toString());
+        int age = Integer.parseInt(etAge.getText().toString());
         String gender = etGender.getText().toString();
-        int salary = Integer.valueOf(etSalary.getText().toString());
+        int salary = Integer.parseInt(etSalary.getText().toString());
         String data = etData.getText().toString();
         String info = etInfo.getText().toString();
+        WorkerModel workerModel = new WorkerModel(firstName, lastName, age, gender, info,
+                data, salary, position);
         if(status.equals(MainActivity.ACTIVITY_STATUS_CREATE)) {
-            WorkerModel workerModel = new WorkerModel(firstName, lastName, age, gender, info,
-                    data, salary, position);
-            App.getWorkerApi().addWorker(workerModel).enqueue(new Callback<WorkerModel>() {
-                @Override
-                public void onResponse(Call<WorkerModel> call, Response<WorkerModel> response) {
-                    Toast.makeText(EditActivity.this, "Insert successful",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(Call<WorkerModel> call, Throwable t) {
-                    Toast.makeText(EditActivity.this, "Insert fail",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-
+            addWorker(workerModel);
         } else if(status.equals(MainActivity.ACTIVITY_STATUS_UPDATE)) {
-            WorkerModel workerModel = new WorkerModel(_id, firstName, lastName, age, gender, info,
-                    data, salary, position);
-            App.getWorkerApi().updateWorker(workerModel).enqueue(new Callback<WorkerModel>() {
-                @Override
-                public void onResponse(Call<WorkerModel> call, Response<WorkerModel> response) {
-                    Toast.makeText(EditActivity.this, "Update successful",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(Call<WorkerModel> call, Throwable t) {
-                    Toast.makeText(EditActivity.this, "Update fail",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
+            workerModel.set_id(_id);
+            updateWorker(workerModel);
         }
+    }
+
+    private void addWorker(WorkerModel workerModel) {
+        App.getWorkerApi().addWorker(workerModel).enqueue(new Callback<WorkerModel>() {
+            @Override
+            public void onResponse(Call<WorkerModel> call, Response<WorkerModel> response) {
+                Toast.makeText(EditActivity.this, "Insert successful",
+                        Toast.LENGTH_SHORT).show();
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<WorkerModel> call, Throwable t) {
+                Toast.makeText(EditActivity.this, "Insert fail",
+                        Toast.LENGTH_SHORT).show();
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
+    }
+
+    private void updateWorker(WorkerModel workerModel) {
+        App.getWorkerApi().updateWorker(workerModel).enqueue(new Callback<WorkerModel>() {
+            @Override
+            public void onResponse(Call<WorkerModel> call, Response<WorkerModel> response) {
+                Toast.makeText(EditActivity.this, "Update successful",
+                        Toast.LENGTH_SHORT).show();
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<WorkerModel> call, Throwable t) {
+                Toast.makeText(EditActivity.this, "Update fail",
+                        Toast.LENGTH_SHORT).show();
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
     }
 }

@@ -10,7 +10,6 @@
         style="@style/TextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Roman"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,7 +20,6 @@
         style="@style/TextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Snimchenko"
         app:layout_constraintBaseline_toBaselineOf="@id/tv_firstName"
         app:layout_constraintLeft_toRightOf="@id/tv_firstName"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -30,7 +28,7 @@
         android:id="@+id/btn_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="More"
+        android:text="@string/more_label"
         app:layout_constraintTop_toBottomOf="@id/tv_firstName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn_edit"/>
@@ -39,7 +37,7 @@
         android:id="@+id/btn_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit"
+        android:text="@string/edit_label"
         app:layout_constraintBaseline_toBaselineOf="@id/btn_more"
         app:layout_constraintLeft_toRightOf="@id/btn_more"
         app:layout_constraintRight_toLeftOf="@id/btn_delete"/>
@@ -48,12 +46,13 @@
         android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete"
+        android:text="@string/delete_label"
         app:layout_constraintBaseline_toBaselineOf="@id/btn_more"
         app:layout_constraintLeft_toRightOf="@id/btn_edit"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -66,7 +65,6 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Android developer"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -75,7 +73,6 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21 y.o."
             app:layout_constraintTop_toBottomOf="@id/tv_position"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -84,7 +81,6 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
             app:layout_constraintTop_toBottomOf="@id/tv_age"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -93,7 +89,6 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="500$"
             app:layout_constraintTop_toBottomOf="@id/tv_gender"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -102,7 +97,6 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20.06.2020"
             app:layout_constraintTop_toBottomOf="@id/tv_salary"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -111,7 +105,6 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AAAAafffffffffffffffffffffssssssssssseeeeee"
             app:layout_constraintTop_toBottomOf="@id/tv_data"
             app:layout_constraintLeft_toLeftOf="parent"/>
 

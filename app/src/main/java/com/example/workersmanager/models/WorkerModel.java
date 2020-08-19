@@ -1,11 +1,14 @@
 package com.example.workersmanager.models;
 
+import android.view.View;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class WorkerModel {
+public class WorkerModel implements Serializable {
     @SerializedName("_id")
     @Expose
     private String _id;
@@ -33,6 +36,7 @@ public class WorkerModel {
     @SerializedName("position")
     @Expose
     private String position;
+    public int visibility;
 
     public WorkerModel(String firstName, String lastName, int age, String gender, String info,
                        String data, int salary, String position) {

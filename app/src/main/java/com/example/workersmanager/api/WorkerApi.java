@@ -22,5 +22,5 @@ public interface WorkerApi {
     Call<WorkerModel> updateWorker(@Body WorkerModel worker);
 
     @DELETE("workers/{id}")
-    Call<WorkerModel> deleteWorker(@Path("id") int id);
+    Call<WorkerModel> deleteWorker(@Path("id") String id);
 }

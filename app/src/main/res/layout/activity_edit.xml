@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/info_hint"
         app:layout_constraintTop_toBottomOf="@id/et_data"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -102,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save_label"
-        android:onClick="clickSave"
+        android:onClick="clickButtons"
         app:layout_constraintTop_toBottomOf="@id/et_info"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn_cancel"
@@ -114,9 +114,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel_label"
-        app:layout_constraintTop_toBottomOf="@id/et_info"
+        android:onClick="clickButtons"
         app:layout_constraintLeft_toRightOf="@id/btn_save"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBaseline_toBaselineOf="@id/btn_save"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
