@@ -1,17 +1,26 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ButtonStyle">
-        <item name="android:background">@color/numberButton</item>
-        <item name="android:textColor">@android:color/darker_gray</item>
-        <item name="android:textSize">30sp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="strokeWidth">2dp</item>
+        <item name="backgroundTint">@color/background</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+    <style name="LightButtonStyle" parent="ButtonStyle">
+        <item name="strokeColor">@color/operationButtonLight</item>
+        <item name="rippleColor">@color/operationButtonLight</item>
+    </style>
+
+    <style name="DarkButtonStyle" parent="ButtonStyle">
+        <item name="strokeColor">@color/operationButtonDark</item>
+        <item name="rippleColor">@color/operationButtonDark</item>
     </style>
 
     <style name="TextEditStyle">
@@ -26,6 +35,12 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">25sp</item>
         <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="MyHintText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="hintTextColor">@color/operationButtonLight</item>
+        <item name="boxStrokeColor">@color/operationButtonLight</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
     </style>
 
 </resources>

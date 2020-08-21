@@ -23,11 +23,13 @@ import retrofit2.Response;
 /*
 TODO
 Валидация форм
-Кнопка добавления новых записей
-Реализовать кнопки элемента списка
 Реализовать пагинацию(свайпом перемещаться между страницами)
-При неудачном запросе обновлять данные через некоторое время
+RecyclerView вместо ListView
+-Кнопка добавления новых записей
 ***
+DateTimePicker
+При неудачном запросе обновлять данные через некоторое время
+Добавить скролл навсе экраны с EditText
 Сделать поле информации со скроллом
 Сортирование записей по определенному полю
 Анимации во время сетевых запросов
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     static final String IS_AUTHORIZATION = "IS_AUTHORIZATION";
     static final int CALL_LOGIN_ACTIVITY = 0;
     static final int CALL_EDIT_ACTIVITY = 1;
+    static final int CALL_CREATE_ACTIVITY = 2;
     int PAGE_NUMBER = 1;
     final int COUNT_NOTE = 5;
     ListView listView;
@@ -112,20 +115,35 @@ public class MainActivity extends AppCompatActivity {
             case CALL_EDIT_ACTIVITY:
                 workersAdapter.notifyDataSetChanged();
                 break;
+            case CALL_CREATE_ACTIVITY:
+                getWorkers();
+                break;
         }
     }
 
     private void fillListView(List<WorkerModel> workers) {
         ArrayList<WorkerModel> workersList = new ArrayList<>(workers);
         for(WorkerModel w: workersList) w.visibility = View.GONE;
-        workersAdapter = new WorkersAdapter(context, workersList, new AdditionalOperations());
-        listView.setAdapter(workersAdapter);
+        if(workersAdapter == null) {
+            workersAdapter = new WorkersAdapter(context, workersList, new AdditionalOperations());
+            listView.setAdapter(workersAdapter);
+        }
+        else {
+            workersAdapter.setWorkers(workersList);
+            workersAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         checkAuthorization();
+    }
+
+    public void addWorker(View view) {
+        Intent intent = new Intent(this, EditActivity.class);
+        intent.putExtra("status", ACTIVITY_STATUS_CREATE);
+        startActivityForResult(intent, CALL_CREATE_ACTIVITY);
     }
 
     class AdditionalOperations {

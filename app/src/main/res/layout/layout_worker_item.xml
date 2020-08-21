@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/textField"
+    android:paddingBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -24,29 +25,32 @@
         app:layout_constraintLeft_toRightOf="@id/tv_firstName"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/more_label"
+        style="@style/LightButtonStyle"
         app:layout_constraintTop_toBottomOf="@id/tv_firstName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btn_edit"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_label"
+        style="@style/LightButtonStyle"
         app:layout_constraintBaseline_toBaselineOf="@id/btn_more"
         app:layout_constraintLeft_toRightOf="@id/btn_more"
         app:layout_constraintRight_toLeftOf="@id/btn_delete"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete_label"
+        style="@style/DarkButtonStyle"
         app:layout_constraintBaseline_toBaselineOf="@id/btn_more"
         app:layout_constraintLeft_toRightOf="@id/btn_edit"
         app:layout_constraintRight_toRightOf="parent"/>

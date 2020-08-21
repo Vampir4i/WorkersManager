@@ -7,50 +7,79 @@
     android:background="@color/background"
     tools:context=".RegistrationActivity">
 
-    <EditText
-        android:id="@+id/et_login"
-        style="@style/TextEditStyle"
-        android:layout_width="300dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/il_login"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/login_hint"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/et_password"
+        app:layout_constraintBottom_toTopOf="@id/il_password"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="@string/login_hint"
+        style="@style/MyHintText">
 
-    <EditText
-        android:id="@+id/et_password"
-        style="@style/TextEditStyle"
-        android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_login"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="@android:color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/il_password"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/il_login"
+        app:layout_constraintBottom_toTopOf="@id/il_email"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:hint="@string/password_hint"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/et_login"
-        app:layout_constraintBottom_toTopOf="@id/et_email"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        style="@style/MyHintText">
 
-    <EditText
-        android:id="@+id/et_email"
-        style="@style/TextEditStyle"
-        android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textSize="25sp"
+            android:textColor="@android:color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/il_email"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/email_hint"
-        android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/il_password"
         app:layout_constraintBottom_toTopOf="@id/btn_enter"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="@string/email_hint"
+        style="@style/MyHintText">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textSize="25sp"
+            android:textColor="@android:color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_enter"
-        style="@style/ButtonStyle"
+        style="@style/LightButtonStyle"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/registration_label"
         android:onClick="clickEnter"
-        app:layout_constraintTop_toBottomOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@+id/il_email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

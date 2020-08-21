@@ -26,6 +26,10 @@ public class WorkersAdapter extends BaseAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public void setWorkers(ArrayList<WorkerModel> workers) {
+        this.workers = workers;
+    }
+
     @Override
     public int getCount() {
         return workers.size();
