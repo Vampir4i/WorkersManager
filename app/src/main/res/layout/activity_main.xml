@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/lv_workers"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_workers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:background="@color/background" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

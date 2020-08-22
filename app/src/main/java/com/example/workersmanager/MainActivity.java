@@ -2,6 +2,7 @@ package com.example.workersmanager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,13 +25,9 @@ import retrofit2.Response;
 TODO
 Валидация форм
 Реализовать пагинацию(свайпом перемещаться между страницами)
-RecyclerView вместо ListView
--Кнопка добавления новых записей
 ***
 DateTimePicker
 При неудачном запросе обновлять данные через некоторое время
-Добавить скролл навсе экраны с EditText
-Сделать поле информации со скроллом
 Сортирование записей по определенному полю
 Анимации во время сетевых запросов
 Анимация списка элементов
@@ -46,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
     static final int CALL_CREATE_ACTIVITY = 2;
     int PAGE_NUMBER = 1;
     final int COUNT_NOTE = 5;
-    ListView listView;
+    RecyclerView listView;
     final Context context = this;
-    WorkersAdapter workersAdapter;
+    WorkersRecyclerAdapter workersAdapter;
 
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = findViewById(R.id.lv_workers);
+        listView = findViewById(R.id.rv_workers);
 
         checkAuthorization();
     }
@@ -125,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<WorkerModel> workersList = new ArrayList<>(workers);
         for(WorkerModel w: workersList) w.visibility = View.GONE;
         if(workersAdapter == null) {
-            workersAdapter = new WorkersAdapter(context, workersList, new AdditionalOperations());
+            workersAdapter = new WorkersRecyclerAdapter(context, workersList, new AdditionalOperations());
             listView.setAdapter(workersAdapter);
         }
         else {

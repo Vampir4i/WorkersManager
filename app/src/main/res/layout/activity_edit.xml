@@ -1,198 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".EditActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_firstName"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/il_lastName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/background"
+        android:paddingTop="40dp"
+        tools:context=".EditActivity">
 
-        android:hint="@string/first_name_hint"
-        style="@style/MyHintText">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_firstName"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_firstName"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white" />
+            android:hint="@string/first_name_hint"
+            app:layout_constraintBottom_toTopOf="@id/il_lastName"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_firstName"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/il_firstName"
-        app:layout_constraintBottom_toTopOf="@id/il_position"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="@string/last_name_hint"
-        style="@style/MyHintText">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_lastName"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_lastName"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
+            android:hint="@string/last_name_hint"
+            app:layout_constraintBottom_toTopOf="@id/il_position"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_firstName"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_lastName"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_position"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/il_lastName"
-        app:layout_constraintBottom_toTopOf="@id/il_age"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="@string/position_hint"
-        style="@style/MyHintText">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_position"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_position"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
+            android:hint="@string/position_hint"
+            app:layout_constraintBottom_toTopOf="@id/il_age"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_lastName"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_position"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/il_position"
-        app:layout_constraintBottom_toTopOf="@id/il_gender"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="@string/age_hint"
-        style="@style/MyHintText">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_age"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_age"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
+            android:hint="@string/age_hint"
+            app:layout_constraintBottom_toTopOf="@id/il_gender"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_position"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_age"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/il_age"
-        app:layout_constraintBottom_toTopOf="@id/il_salary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="@string/gender_hint"
-        style="@style/MyHintText">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_gender"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_gender"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
+            android:hint="@string/gender_hint"
+            app:layout_constraintBottom_toTopOf="@id/il_salary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_age"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_gender"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_salary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/il_gender"
-        app:layout_constraintBottom_toTopOf="@id/il_data"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="@string/salary_hint"
-        style="@style/MyHintText">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_salary"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_salary"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
+            android:hint="@string/salary_hint"
+            app:layout_constraintBottom_toTopOf="@id/il_data"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_gender"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_salary"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/il_salary"
-        app:layout_constraintBottom_toTopOf="@id/il_info"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="@string/data_hint"
-        style="@style/MyHintText">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_data"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_data"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
+            android:hint="@string/data_hint"
+            app:layout_constraintBottom_toTopOf="@id/il_info"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_salary"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_data"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/il_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/il_data"
-        app:layout_constraintBottom_toTopOf="@id/btn_save"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="@string/info_hint"
-        style="@style/MyHintText">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_info"
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_info"
+            style="@style/MyHintText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
+            android:hint="@string/info_hint"
+            app:layout_constraintBottom_toTopOf="@id/btn_save"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_data"
+            app:shapeAppearance="@style/Rounded">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_info"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save_label"
-        android:onClick="clickButtons"
-        style="@style/LightButtonStyle"
-        app:layout_constraintTop_toBottomOf="@id/il_info"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btn_cancel"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            style="@style/LightButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickButtons"
+            android:text="@string/save_label"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_cancel"
+            app:layout_constraintTop_toBottomOf="@id/il_info" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel_label"
-        android:onClick="clickButtons"
-        style="@style/DarkButtonStyle"
-        app:layout_constraintLeft_toRightOf="@id/btn_save"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/btn_save"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/DarkButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickButtons"
+            android:text="@string/cancel_label"
+            app:layout_constraintBaseline_toBaselineOf="@id/btn_save"
+            app:layout_constraintLeft_toRightOf="@id/btn_save"
+            app:layout_constraintRight_toRightOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

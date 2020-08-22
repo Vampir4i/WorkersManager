@@ -41,6 +41,13 @@
         <item name="hintTextColor">@color/operationButtonLight</item>
         <item name="boxStrokeColor">@color/operationButtonLight</item>
         <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="boxBackgroundColor">@color/textField</item>
+        <item name="android:paddingVertical">5dp</item>
+    </style>
+
+    <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
     </style>
 
 </resources>
