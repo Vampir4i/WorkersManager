@@ -39,6 +39,14 @@ public class WorkersRecyclerAdapter extends RecyclerView.Adapter<WorkersRecycler
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WorkerModel worker = workers.get(position);
 
+        holder.firstName.setText(worker.getFirstName());
+        holder.lastName.setText(worker.getLastName());
+        holder.age.setText("" + worker.getAge());
+        holder.gender.setText(worker.getGender());
+        holder.position.setText(worker.getPosition());
+        holder.data.setText(worker.getData());
+        holder.salary.setText("" + worker.getSalary());
+        holder.info.setText(worker.getInfo());
         holder.moreInfo.setVisibility(worker.visibility);
 
         holder.btnMore.setOnClickListener(btnItemClick);

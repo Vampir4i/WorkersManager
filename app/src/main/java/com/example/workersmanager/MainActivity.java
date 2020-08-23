@@ -8,8 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.workersmanager.models.WorkerModel;
@@ -24,7 +24,7 @@ import retrofit2.Response;
 /*
 TODO
 Валидация форм
-Реализовать пагинацию(свайпом перемещаться между страницами)
+-Реализовать пагинацию(свайпом перемещаться между страницами)
 ***
 DateTimePicker
 При неудачном запросе обновлять данные через некоторое время
@@ -34,7 +34,7 @@ DateTimePicker
 Материал дизан
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     static final String ACTIVITY_STATUS_CREATE = "ACTIVITY_STATUS_CREATE";
     static final String ACTIVITY_STATUS_UPDATE = "ACTIVITY_STATUS_UPDATE";
     static final String IS_AUTHORIZATION = "IS_AUTHORIZATION";
@@ -42,17 +42,20 @@ public class MainActivity extends AppCompatActivity {
     static final int CALL_EDIT_ACTIVITY = 1;
     static final int CALL_CREATE_ACTIVITY = 2;
     int PAGE_NUMBER = 1;
-    final int COUNT_NOTE = 5;
-    RecyclerView listView;
+    final int COUNT_NOTE = 9;
+    int ALL_COUNT_NOTES;
+    RecyclerView recyclerView;
     final Context context = this;
     WorkersRecyclerAdapter workersAdapter;
+    float positionDown;
 
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = findViewById(R.id.rv_workers);
+        recyclerView = findViewById(R.id.rv_workers);
+        recyclerView.setOnTouchListener(this);
 
         checkAuthorization();
     }
@@ -63,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<WorkerModel.GetWorkers> call,
                                    Response<WorkerModel.GetWorkers> response) {
-                fillListView(response.body().getWorkers());
+                ALL_COUNT_NOTES = response.body().getCountWorkers();
+                fillRecyclerView(response.body().getWorkers());
             }
 
             @Override
@@ -118,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void fillListView(List<WorkerModel> workers) {
+    private void fillRecyclerView(List<WorkerModel> workers) {
         ArrayList<WorkerModel> workersList = new ArrayList<>(workers);
         for(WorkerModel w: workersList) w.visibility = View.GONE;
         if(workersAdapter == null) {
             workersAdapter = new WorkersRecyclerAdapter(context, workersList, new AdditionalOperations());
-            listView.setAdapter(workersAdapter);
+            recyclerView.setAdapter(workersAdapter);
         }
         else {
             workersAdapter.setWorkers(workersList);
@@ -141,6 +145,33 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra("status", ACTIVITY_STATUS_CREATE);
         startActivityForResult(intent, CALL_CREATE_ACTIVITY);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                positionDown = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                float move = positionDown - event.getX();
+                if(move <= -200) {
+                    if(PAGE_NUMBER > 0) {
+                        PAGE_NUMBER--;
+                        getWorkers();
+                    }
+                }else if(move >= 200){
+                    double countPages = Math.ceil(Double.valueOf(ALL_COUNT_NOTES) / COUNT_NOTE);
+
+                    if(PAGE_NUMBER < countPages){
+                        PAGE_NUMBER++;
+                        getWorkers();
+                    }
+                }
+                break;
+        }
+        return false;
     }
 
     class AdditionalOperations {
