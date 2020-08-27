@@ -3,6 +3,7 @@ package com.example.workersmanager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +11,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.workersmanager.models.WorkerModel;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +26,11 @@ import retrofit2.Response;
 
 /*
 TODO
-Валидация форм
--Реализовать пагинацию(свайпом перемещаться между страницами)
 ***
-DateTimePicker
-При неудачном запросе обновлять данные через некоторое время
+Ландшафтный режим
 Сортирование записей по определенному полю
 Анимации во время сетевых запросов
 Анимация списка элементов
-Материал дизан
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     static final int CALL_LOGIN_ACTIVITY = 0;
     static final int CALL_EDIT_ACTIVITY = 1;
     static final int CALL_CREATE_ACTIVITY = 2;
+    static final int MIN_CHARACTERS = 6;
     int PAGE_NUMBER = 1;
     final int COUNT_NOTE = 9;
     int ALL_COUNT_NOTES;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     final Context context = this;
     WorkersRecyclerAdapter workersAdapter;
     float positionDown;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     SharedPreferences sharedPreferences;
     @Override
@@ -56,6 +57,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.rv_workers);
         recyclerView.setOnTouchListener(this);
+        swipeRefreshLayout = findViewById(R.id.swipeToRefresh);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getWorkers();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         checkAuthorization();
     }
@@ -141,6 +151,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         checkAuthorization();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putString(IS_AUTHORIZATION, "false");
+        ed.apply();
+    }
+
     public void addWorker(View view) {
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra("status", ACTIVITY_STATUS_CREATE);
@@ -171,6 +190,28 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 }
                 break;
         }
+        return false;
+    }
+
+    public static boolean isEmptyField(TextInputLayout il, EditText et) {
+        if(et.getText().toString().isEmpty()) {
+            il.setError("Should not be empty");
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isMinLengthField(TextInputLayout il, EditText et) {
+        if(et.getText().toString().length() < MIN_CHARACTERS) {
+            il.setError("Must be more than " + (MIN_CHARACTERS - 1) + " characters.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean verification(TextInputLayout il, EditText et){
+        if(isMinLengthField(il, et)) return true;
+        else isEmptyField(il, et);
         return false;
     }
 

@@ -9,15 +9,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.workersmanager.models.UserModel;
+import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity implements View.OnFocusChangeListener {
     EditText etLogin;
     EditText etPassword;
     EditText etEmail;
+    TextInputLayout ilLogin;
+    TextInputLayout ilPassword;
+    TextInputLayout ilEmail;
     final Context context = this;
 
     @Override
@@ -28,9 +32,17 @@ public class RegistrationActivity extends AppCompatActivity {
         etLogin = findViewById(R.id.et_login);
         etPassword = findViewById(R.id.et_password);
         etEmail = findViewById(R.id.et_email);
+        ilLogin = findViewById(R.id.il_login);
+        ilPassword = findViewById(R.id.il_password);
+        ilEmail = findViewById(R.id.il_email);
+
+        etLogin.setOnFocusChangeListener(this);
+        etPassword.setOnFocusChangeListener(this);
+        etEmail.setOnFocusChangeListener(this);
     }
 
     public void clickEnter(View view) {
+        if(!allVerification()) return;
         String login = etLogin.getText().toString();
         String password = etPassword.getText().toString();
         String email = etEmail.getText().toString();
@@ -52,5 +64,34 @@ public class RegistrationActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()) {
+            case R.id.et_login:
+                if(!hasFocus) {
+                    MainActivity.verification(ilLogin, etLogin);
+                } else ilLogin.setError("");
+                break;
+            case R.id.et_password:
+                if(!hasFocus) {
+                    MainActivity.verification(ilPassword, etPassword);
+                } else ilPassword.setError("");
+                break;
+            case R.id.et_email:
+                if(!hasFocus) {
+                    MainActivity.verification(ilEmail, etEmail);
+                } else ilEmail.setError("");
+                break;
+        }
+    }
+
+    public boolean allVerification() {
+        boolean flag = true;
+        if(!MainActivity.verification(ilLogin, etLogin)) flag = false;
+        if(!MainActivity.verification(ilPassword, etPassword) && flag) flag = false;
+        if(!MainActivity.verification(ilEmail, etEmail) && flag) flag = false;
+        return flag;
     }
 }

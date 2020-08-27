@@ -25,6 +25,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:hint="@string/login_hint"
             app:shapeAppearance="@style/Rounded"
+            app:errorEnabled="true"
             style="@style/MyHintText">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -49,6 +50,7 @@
             app:endIconMode="password_toggle"
             app:endIconTint="@color/operationButtonLight"
             app:shapeAppearance="@style/Rounded"
+            app:errorEnabled="true"
             style="@style/MyHintText">
 
             <com.google.android.material.textfield.TextInputEditText

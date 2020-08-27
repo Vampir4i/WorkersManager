@@ -11,14 +11,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.workersmanager.models.UserModel;
+import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnFocusChangeListener {
     EditText etLogin;
     EditText etPassword;
+    TextInputLayout ilLogin;
+    TextInputLayout ilPassword;
     final Context context = this;
 
     @Override
@@ -27,9 +30,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etLogin = findViewById(R.id.et_login);
         etPassword = findViewById(R.id.et_password);
+        ilLogin = findViewById(R.id.il_login);
+        ilPassword = findViewById(R.id.il_password);
+
+        etLogin.setOnFocusChangeListener(this);
+        etPassword.setOnFocusChangeListener(this);
     }
 
     public void clickEnter(View view) {
+        if(!allVerification()) return;
         String login = etLogin.getText().toString();
         String password = etPassword.getText().toString();
         UserModel loginModel = new UserModel(login, password);
@@ -44,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void clickRegistration(View view) {
@@ -61,5 +69,28 @@ public class LoginActivity extends AppCompatActivity {
     public void applyAuthorization() {
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()) {
+            case R.id.et_login:
+                if(!hasFocus) {
+                    MainActivity.verification(ilLogin, etLogin);
+                } else ilLogin.setError("");
+                break;
+            case R.id.et_password:
+                if(!hasFocus) {
+                    MainActivity.verification(ilPassword, etPassword);
+                } else ilPassword.setError("");
+                break;
+        }
+    }
+
+    public boolean allVerification() {
+        boolean flag = true;
+        if(!MainActivity.verification(ilLogin, etLogin)) flag = false;
+        if(!MainActivity.verification(ilPassword, etPassword) && flag) flag = false;
+        return flag;
     }
 }
